@@ -35,9 +35,7 @@ spark_steps = [{
             'spark-submit',
             '--deploy-mode', 'cluster',
             '--master', 'yarn',
-            's3://your-spark-job-bucket/spark_job.py',  # Path to your Spark job script in S3
-            '--input', 's3://your-input-bucket/path/to/your/file.csv',  # Input path in S3
-            '--output', 's3://your-output-bucket/path/to/output',  # Output path in S3
+            's3://s3-emr-scripts/emr-redshit.py',  # Path to your Spark job script in S3
         ],
     },
 }]
@@ -45,7 +43,7 @@ spark_steps = [{
 # Operator to add Spark job steps to EMR cluster
 add_steps = EmrAddStepsOperator(
     task_id='add_spark_steps',
-    job_flow_id='your_emr_cluster_id',  # EMR cluster ID
+    job_flow_id='j-28IH021N6P0IH',  # EMR cluster ID
     aws_conn_id='aws_default',  # Connection ID to AWS
     steps=spark_steps,
     dag=dag
@@ -54,7 +52,7 @@ add_steps = EmrAddStepsOperator(
 # Sensor to wait for Spark job completion
 step_sensor = EmrStepSensor(
     task_id='watch_step',
-    job_flow_id='your_emr_cluster_id',  # EMR cluster ID
+    job_flow_id='j-28IH021N6P0IH',  # EMR cluster ID
     step_id="{{ task_instance.xcom_pull(task_ids='add_spark_steps', key='return_value')[0] }}",
     aws_conn_id='aws_default',  # Connection ID to AWS
     dag=dag
