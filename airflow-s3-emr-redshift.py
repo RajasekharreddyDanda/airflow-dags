@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.sensors import S3KeySensor
+from airflow.sensors.s3_key_sensor import S3KeySensor
 from airflow.contrib.operators.emr_add_steps_operator import EmrAddStepsOperator
 from airflow.contrib.sensors.emr_step_sensor import EmrStepSensor
 
