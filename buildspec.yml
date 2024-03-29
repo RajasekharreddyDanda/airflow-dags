@@ -11,8 +11,6 @@ phases:
       - echo "Zipping deployment package..."
       - cd lib
       - zip -r9 ../emrjob_deployment_package.zip .
-      - cd ..
-      - zip -g emrjob_deployment_package.zip airflow-s3-emr-redshift.py
   post_build:
     commands:
       - echo "Uploading to S3..."
