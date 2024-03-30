@@ -1,9 +1,10 @@
 from datetime import datetime, timedelta
 from airflow import DAG
-from airflow.providers.amazon.aws.sensors.s3_key import S3KeySensor
+from airflow.operators.sensors import S3KeySensor
+from airflow.providers.amazon.aws.sensors.s3 import S3KeySensor
 from airflow.sensors.s3_key_sensor import S3KeySensor
-from airflow.providers.amazon.aws.operators.emr_add_steps import EmrAddStepsOperator
-from airflow.providers.amazon.aws.sensors.emr_step import EmrStepSensor
+from airflow.providers.amazon.aws.operators import EmrAddStepsOperator
+from airflow.providers.amazon.aws.sensors import EmrStepSensor
 
 
 default_args = {
