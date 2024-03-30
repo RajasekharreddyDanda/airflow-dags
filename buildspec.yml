@@ -7,7 +7,6 @@ phases:
       - echo "Installing dependencies..."
       - pip install apache-airflow-providers-amazon
       - pip install -r requirement.txt -t lib
-      - pip install apache-airflow-providers-amazon
   build:
     commands:
       - echo "Zipping deployment package..."
